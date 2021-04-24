@@ -9,6 +9,7 @@ using AutoMapper;
 using API.DTOs;
 using System.Collections.Generic;
 using API.Errors;
+using API.Helpers;
 
 namespace API.Controllers
 {
@@ -32,12 +33,16 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts([FromQuery]ProductSpecParams productSpecParams)
         {
-            var spec=new ProductsWithTypesAndBrandsSpecifications();
-            var products=await this._productRepository.ListAllAsync(spec);
+            var spec=new ProductsWithTypesAndBrandsSpecifications(productSpecParams);
+            var products=await this._productRepository.ListAllAsync(spec);            
             var productsToReturn=_mapper.Map<IReadOnlyList<ProductToReturnDto>>(products);
-            return Ok(productsToReturn);
+            var countSpecifications=new ProductWithFiltersForCountSpecifications(productSpecParams);            
+            int Count= await _productRepository.CountAsync(countSpecifications);
+            var result=new Pagination<ProductToReturnDto>(productsToReturn,productSpecParams.PageIndex,
+            productSpecParams.PageSize,Count);
+            return Ok(result);
 
         }
 

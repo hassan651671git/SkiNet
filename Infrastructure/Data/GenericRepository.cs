@@ -41,12 +41,19 @@ namespace Infrastructure.Data
         }
 
 
-        private IQueryable<T>ApplaySpecification(ISpecification<T> specification)
+     
+
+        public async Task<int> CountAsync(ISpecification<T> specification)
+        {
+          var query=  ApplaySpecification(specification);
+          return await query.CountAsync();
+             
+        }
+           private IQueryable<T>ApplaySpecification(ISpecification<T> specification)
         {
              var query=_dataContext.Set<T>().AsQueryable();
              query=SpecificationEvaluator<T>.GetQuery(query,specification);
              return query;
         }
-
     }
 }
