@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Errors;
+using API.Extensions;
 using API.Helpers;
+using API.MiddleWares;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
@@ -36,16 +39,14 @@ namespace API
         {
 
             services.AddControllers();
+            services.AddApplicationServices();
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlite(_configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-            });
+            
+            services.AddSwaggerDocumentaion();
             services.AddAutoMapper(typeof(AutoMapperProfile));
         }
 
@@ -54,11 +55,13 @@ namespace API
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+               // app.UseDeveloperExceptionPage();
+                app.AddSwaggerDocumentaion();
             }
 
+            app.UseMiddleware<ExceptionMiddleWare>();
+
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             app.UseHttpsRedirection();
 

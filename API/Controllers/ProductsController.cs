@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using API.DTOs;
 using System.Collections.Generic;
+using API.Errors;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductsController:ControllerBase
+    
+    public class ProductsController:BaseApiController
     {
         private IGenericRepository<Product> _productRepository;
         private IGenericRepository<ProductType> _productTypeRepository;
@@ -46,6 +46,10 @@ namespace API.Controllers
         {
              var spec=new ProductsWithTypesAndBrandsSpecifications(id);
              var product=await _productRepository.GetByIdAsync(spec);
+             if(product==null)
+             {
+               return NotFound(new ApiResponse(404));
+             }
              var productToReturnDto=_mapper.Map<ProductToReturnDto>(product);
             return  Ok(productToReturnDto);
         }
