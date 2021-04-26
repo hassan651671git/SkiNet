@@ -1,0 +1,26 @@
+<div class="row">
+
+    <div class="col-6">
+        <img [src]="product?.pictureUrl" alt="product img" class="img-fluid w-100" >
+    </div>
+   <div class="col-6">
+       <h3>{{product?.name}} </h3>
+       <p>{{product?.price|currency}} </p>
+       <div class="d-flex justify-content-start align-items-center">
+       <i class="fa fa-minus-circle text-warning mr-2" (click)="countDown()" style="cursor: pointer; font-size: 2em;"></i>
+       <span class="font-weight-bold" style="font-size: 2em;">{{count}}</span>
+       <i class="fa fa-plus-circle text-warning ml-2" (click)="countUp()" style="cursor: pointer; font-size: 2em;"></i>
+       <button class="btn btn-outline-secondary btn-larg ml-3">Add To Card</button>
+       </div>
+
+
+   </div>
+   <div class="row mt-6">
+       <div class="col-12 ml-3">
+           <h6>Description</h6>
+           <p>{{product?.description}}</p>>
+       </div>
+   </div>
+
+
+    </div>

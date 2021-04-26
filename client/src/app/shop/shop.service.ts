@@ -4,6 +4,7 @@ import { from, Observable } from 'rxjs';
 import {map,catchError} from 'rxjs/operators';
 import { IBrand } from '../shared/models/brand';
 import { IPagination } from '../shared/models/pagination';
+import { IProduct } from '../shared/models/Product';
 import { IType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/ShopParams';
 
@@ -35,6 +36,9 @@ export class ShopService {
     // .pipe(
     //   map((response)=>{return response.body;})
     // );
+  }
+  public getProduct(id:number):Observable<IProduct>{
+        return this.http.get<IProduct>(this.baseUrl+"products/"+id);
   }
   public getBrands():Observable<IBrand[]>{
     return this.http.get<IBrand[]>(this.baseUrl+"products/brands");
