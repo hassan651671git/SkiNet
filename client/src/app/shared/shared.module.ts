@@ -4,6 +4,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PaginationHeaderComponent } from './components/pagination-header.component';
 import { PaginationPagerComponent } from './components/pagination-pager.component';
 import { FormsModule } from '@angular/forms';
+import { AlertfyService } from './AlertfyService';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
     
   ],
+  providers:[AlertfyService],
   exports:[PaginationModule,PaginationHeaderComponent,PaginationPagerComponent,FormsModule]
 })
 export class SharedModule { }

@@ -35,7 +35,7 @@ namespace API.Controllers
         public IActionResult gebadRequest(){
 
 
-            return BadRequest();
+            return BadRequest(new ApiResponse(400));
         }
 
 

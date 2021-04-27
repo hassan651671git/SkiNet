@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-12">
+        <button class="btn btn-primary" (click)="get400rror()">400error</button>
+        <h5>{{error400|json}}</h5>
+        <br>
+        <button class="btn btn-primary" (click)="get404Error()">404 error</button>
+        <h5>{{error404|json}}</h5>
+        <br>
+        <button class="btn btn-primary" (click)="get500Error()">500 error</button>
+        <h5>{{error500|json}}</h5>
+        <br>
+        <button class="btn btn-primary" (click)="get400ValidationError()">validation error</button>
+        <div>
+            <ul>
+                <li class="text-danger" *ngFor="let error of validationError">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+        <br>
+    </div>
+
+</div>
