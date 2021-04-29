@@ -11,6 +11,8 @@ import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { from } from 'rxjs';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import{NgxSpinnerModule} from 'ngx-spinner'
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
  
 @NgModule({
   declarations: [
@@ -25,10 +27,16 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
     HttpClientModule,
     CoreModule,
     HomeModule,
+    NgxSpinnerModule
      
     
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true}],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
+    
+  
+  ],
   bootstrap: [AppComponent],
  
 })

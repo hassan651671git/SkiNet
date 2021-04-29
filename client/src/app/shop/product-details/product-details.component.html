@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row" *ngIf="product" >
 
     <div class="col-6">
-        <img [src]="product?.pictureUrl" alt="product img" class="img-fluid w-100" >
+        <img [src]="product?.pictureUrl" alt="product img" class="img-fluid w-100"   >
     </div>
    <div class="col-6">
        <h3>{{product?.name}} </h3>
@@ -15,10 +15,10 @@
 
 
    </div>
-   <div class="row mt-6">
+   <div class="row mt-6"   >
        <div class="col-12 ml-3">
            <h6>Description</h6>
-           <p>{{product?.description}}</p>>
+           <p>{{product?.description}}</p>
        </div>
    </div>
 
