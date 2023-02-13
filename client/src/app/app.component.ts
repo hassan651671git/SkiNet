@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BasketService } from './basket/basket.service';
 import { ShopService } from './shop/shop.service';
  
 
@@ -11,10 +12,11 @@ export class AppComponent implements OnInit {
 
   title = 'Skinet';
  
-  constructor(private shopService:ShopService){
+  constructor(private shopService:ShopService,private basketService: BasketService){
 
   }
   ngOnInit(): void {
      
+    this.basketService.getBasketFromLocalStorage();
     }
 }

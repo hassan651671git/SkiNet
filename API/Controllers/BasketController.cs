@@ -3,7 +3,7 @@ using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers
+namespace API.Controllers 
 {
     public class BasketController : BaseApiController
     {
@@ -14,10 +14,10 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetBasketById(string basketId)
+        public async Task<IActionResult> GetBasketById(string id)
         {
-            var result= await _basketRepository.GetBasketAsync(basketId);
-            return Ok(result ?? new CustomerBasket(basketId));
+            var result= await _basketRepository.GetBasketAsync(id);
+            return Ok(result ?? new CustomerBasket(id));
             
         }
 
@@ -30,7 +30,7 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult>DeleteBasketAsync(string basketId)
+        public async Task<IActionResult>DeleteBasketAsync([FromQuery]string basketId)
         {
              var result=await _basketRepository.DeleteBasketAsync(basketId);
              if(result)

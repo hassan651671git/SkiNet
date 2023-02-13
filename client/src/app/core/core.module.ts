@@ -7,6 +7,7 @@ import { ServerErrorComponent } from './server-error/server-error.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { LoadingService } from './services/loading.service';
+import { BreadcrumbModule } from 'xng-breadcrumb';
  
 @NgModule({
   declarations: [NavBarComponent,
@@ -17,7 +18,7 @@ import { LoadingService } from './services/loading.service';
   imports: [
     CommonModule,
     RouterModule,
-    
+    BreadcrumbModule,
   ],
   providers: [LoadingService],
   exports:[NavBarComponent,SectionHeaderComponent,]

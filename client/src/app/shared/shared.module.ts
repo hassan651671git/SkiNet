@@ -6,11 +6,13 @@ import { PaginationHeaderComponent } from './components/pagination-header.compon
 import { PaginationPagerComponent } from './components/pagination-pager.component';
 import { FormsModule } from '@angular/forms';
 import { AlertfyService } from './AlertfyService';
+import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
 
 @NgModule({
   declarations: [
     PaginationHeaderComponent,
-    PaginationPagerComponent
+    PaginationPagerComponent,
+    OrderTotalsComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { AlertfyService } from './AlertfyService';
     PaginationHeaderComponent,
     PaginationPagerComponent,
     FormsModule,
-    CarouselModule
+    CarouselModule,
+    OrderTotalsComponent
   ]
 })
 export class SharedModule { }

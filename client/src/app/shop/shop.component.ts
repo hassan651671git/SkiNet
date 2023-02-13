@@ -34,10 +34,10 @@ export class ShopComponent implements OnInit {
     
   }
   getProducts(){
-    this.shopParams.pageIndex=1;
     this.shopService.getProducts(this.shopParams!).subscribe(
       
       (response)=>{
+        //console.log(response);
         this.paginationData=response;
         this.products=response.data;
       },

@@ -13,7 +13,7 @@ import { ShopParams } from '../shared/models/ShopParams';
 })
 export class ShopService {
 
-  private baseUrl='https://localhost:5001/api/'
+  private baseUrl='http://localhost:5000/api/'
   constructor(private http:HttpClient) { }
 
   public getProducts(shopParams:ShopParams):Observable<IPagination>{
